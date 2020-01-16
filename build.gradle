@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'com.offcn'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+if (version == 'unspecified'){
+    version = 'SNAPSHOT'
+}
+println 'Will build the ' +project.name+' for version: '+version
+
+repositories {
+//    maven { url "${nexusUrl}" }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+//    jcenter()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
