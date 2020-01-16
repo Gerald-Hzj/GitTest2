@@ -1,12 +1,14 @@
 plugins {
     id 'java'
     id 'idea'
+    id 'maven'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 group 'com.offcn'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 
 if (version == 'unspecified'){
     version = 'SNAPSHOT'
@@ -23,3 +25,26 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
+ext{
+    springBootVersion = '2.2.2.RELEASE'
+}
+
+dependencyManagement {
+    dependencies {
+        dependency "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+        dependency "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+bootJar {
+    mainClassName = 'com.offcn.RestServiceApplication'
+    baseName = 'offcn-rest-service'
+    version =  version
+}
