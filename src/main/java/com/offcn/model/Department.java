@@ -1,42 +1,51 @@
 package com.offcn.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author  张招雄
  */
 
 @Entity
+@Table(name="departments")
 public class Department {
     @Id
-    private String dep_id;
-    private String dep_name;
-    private String master_name;
+    @Column(name="dep_id")
+    private String depId;
+
+    @Column(name="dep_name")
+    private String depName;
+
+    @Column(name="master_name")
+    private String masterName;
+
     private String slogan;
 
-    public String getDep_id() {
-        return dep_id;
+    public String getDepId() {
+        return depId;
     }
 
-    public void setDep_id(String dep_id) {
-        this.dep_id = dep_id;
+    public void setDepId(String depId) {
+        this.depId = depId;
     }
 
-    public String getDep_name() {
-        return dep_name;
+    public String getDepName() {
+        return depName;
     }
 
-    public void setDep_name(String dep_name) {
-        this.dep_name = dep_name;
+    public void setDepName(String depName) {
+        this.depName = depName;
     }
 
-    public String getMaster_name() {
-        return master_name;
+    public String getMasterName() {
+        return masterName;
     }
 
-    public void setMaster_name(String master_name) {
-        this.master_name = master_name;
+    public void setMasterName(String masterName) {
+        this.masterName = masterName;
     }
 
     public String getSlogan() {
