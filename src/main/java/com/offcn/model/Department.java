@@ -13,15 +13,16 @@ import javax.persistence.Table;
 @Table(name="departments")
 public class Department {
     @Id
-    @Column(name="dep_id")
+    @Column(name="dep_id",length = 10)
     private String depId;
 
-    @Column(name="dep_name")
+    @Column(name="dep_name",length = 20,nullable = false)
     private String depName;
 
-    @Column(name="master_name")
+    @Column(name="master_name",length = 20,nullable = false)
     private String masterName;
 
+    @Column(length = 100,nullable = true)
     private String slogan;
 
     public String getDepId() {
