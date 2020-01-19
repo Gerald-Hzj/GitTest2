@@ -2,6 +2,7 @@
 **/*.iml
 **/*.ipr
 **/*.iws
+**/*.sqlite3
 target
 out
 logs

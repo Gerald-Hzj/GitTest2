@@ -1,9 +1,7 @@
 package com.offcn.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author  张招雄
@@ -24,6 +22,9 @@ public class Department {
 
     @Column(length = 100,nullable = true)
     private String slogan;
+
+    @OneToMany
+    private List<Class> classes;
 
     public String getDepId() {
         return depId;
