@@ -1,6 +1,7 @@
 package com.offcn.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author 张招雄
@@ -28,6 +29,9 @@ public class Class {
     @ManyToOne
     @JoinColumn(name = "dep_id",referencedColumnName = "dep_id", foreignKey=@ForeignKey ,insertable = false, updatable = false)
     private Department department;
+
+    @OneToMany
+    private List<Student> students;
 
     public String getClsId() {
         return clsId;
