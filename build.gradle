@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'maven'
+    id 'maven-publish'
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
@@ -10,10 +11,10 @@ group 'com.offcn'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-if (version == 'unspecified'){
-    version = 'SNAPSHOT'
+if (version == 'unspecified') {
+    version = currentVersion + '-SNAPSHOT'
 }
-println 'Will build the ' +project.name+' for version: '+version
+println 'Will build the ' + project.name + ' for version: ' + version
 
 repositories {
 //    maven { url "${nexusUrl}" }
@@ -25,7 +26,7 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-ext{
+ext {
     springBootVersion = '2.2.2.RELEASE'
     sqliteJDBCVersion = '3.30.1'
     mysqlJDBCVersion = '8.0.18'
@@ -55,6 +56,26 @@ dependencies {
 
 bootJar {
     mainClassName = 'com.offcn.RestServiceApplication'
-    baseName = 'offcn-rest-service'
-    version =  version
+    version = version
+}
+
+publishing {
+    repositories {
+        maven {
+            url = version.endsWith('SNAPSHOT') ? nexusSnapshotURL : nexusRelaseURL
+            credentials {
+                username "$nexusUsername"
+                password "$nexusPassword"
+            }
+        }
+    }
+
+    publications {
+        bootJava(MavenPublication) {
+            artifact bootJar
+            pom {
+                description = 'Student management system bootJar'
+            }
+        }
+    }
 }
