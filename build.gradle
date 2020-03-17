@@ -17,8 +17,8 @@ if (version == 'unspecified') {
 println 'Will build the ' + project.name + ' for version: ' + version
 
 repositories {
-//    maven { url "${nexusUrl}" }
-    maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+    maven { url "${nexusUrl}" }
+//    maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
 //    jcenter()
 }
 
