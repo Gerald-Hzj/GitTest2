@@ -1,1 +1,13 @@
+pluginManagement {
+    repositories {
+        maven {
+            url "${nexusUrl}"
+        }
+        gradlePluginPortal()
+        maven {
+            url "${nexusUrl}"
+        }
+    }
+}
+
 rootProject.name = 'OffcnStudentManageAPI'
